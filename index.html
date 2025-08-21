@@ -25,6 +25,39 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    /* Typewriter Effect */
+    h1 {
+      font-size: 3rem;
+      border-right: 3px solid white; /* blinking cursor */
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 2.5s steps(20, end) forwards,
+                 blink 0.8s step-end infinite,
+                 floatUp 3s ease-out forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: white; }
+    }
+
+    /* Move Up + Fade In */
+    @keyframes floatUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(-30px); opacity: 1; }
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
