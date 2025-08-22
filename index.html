@@ -15,9 +15,28 @@
       text-align: center;
       font-family: Arial, sans-serif;
       color: white;
+      background: black;
+      position: relative;
+    }
+
+    /* Animated Chromatic Border */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff0000);
       background-size: 800% 800%;
       animation: gradientShift 15s ease infinite;
+      padding: 3px; /* thin border */
+      -webkit-mask: 
+        linear-gradient(#000 0 0) content-box, 
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      z-index: -1;
     }
 
     @keyframes gradientShift {
@@ -77,10 +96,14 @@
       transition: 0.3s;
     }
 
+    /* Chromatic Hover Glow */
     .buttons a:hover {
-      background: white;
       color: black;
-      box-shadow: 0 0 20px white;
+      background: white;
+      box-shadow: 0 0 15px #ff00ff,
+                  0 0 25px #00ffff,
+                  0 0 35px #ffff00,
+                  0 0 45px #ff0000;
     }
   </style>
 </head>
@@ -90,7 +113,7 @@
 
   <div class="buttons">
     <a href="https://x.com/REALgeometron" target="_blank">Twitter</a>
-    <a href="https://steamcommunity.com/profiles/76561199039894027" target="_blank">Instagram</a>
+    <a href="https://steamcommunity.com/profiles/76561199039894027" target="_blank">Steam</a>
     <a href="https://github.com/REALgeometron" target="_blank">GitHub</a>
   </div>
 </body>
