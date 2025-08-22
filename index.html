@@ -58,10 +58,40 @@
       margin-top: 20px;
       font-size: 1.2rem;
     }
+
+    /* Social Buttons */
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      transition: 0.3s;
+    }
+
+    .buttons a:hover {
+      background: white;
+      color: black;
+      box-shadow: 0 0 20px white;
+    }
   </style>
 </head>
 <body>
   <h1>GEO UP⭡</h1>
   <p>This is where you'll find all my socials.</p>
+
+  <div class="buttons">
+    <a href="https://x.com/REALgeometron" target="_blank">Twitter</a>
+    <a href="https://steamcommunity.com/profiles/76561199039894027" target="_blank">Instagram</a>
+    <a href="https://github.com/REALgeometron" target="_blank">GitHub</a>
+  </div>
 </body>
 </html>
