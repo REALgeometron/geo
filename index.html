@@ -16,33 +16,17 @@
       font-family: Arial, sans-serif;
       color: white;
       background: black;
-      position: relative;
+
+      /* Thin animated chromatic border */
+      border: 3px solid transparent;
+      border-image: linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff0000) 1;
+      animation: borderShift 10s linear infinite;
     }
 
-    /* Animated Chromatic Border */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff0000);
-      background-size: 800% 800%;
-      animation: gradientShift 15s ease infinite;
-      padding: 3px; /* thin border */
-      -webkit-mask: 
-        linear-gradient(#000 0 0) content-box, 
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      z-index: -1;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes borderShift {
+      0% { border-image-source: linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff0000); }
+      50% { border-image-source: linear-gradient(270deg, #ff0000, #ff00ff, #00ffff, #ffff00); }
+      100% { border-image-source: linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff0000); }
     }
 
     /* Typewriter Effect */
@@ -93,17 +77,39 @@
       color: white;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(6px);
-      transition: 0.3s;
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Chromatic Hover Glow */
-    .buttons a:hover {
-      color: black;
-      background: white;
-      box-shadow: 0 0 15px #ff00ff,
-                  0 0 25px #00ffff,
-                  0 0 35px #ffff00,
-                  0 0 45px #ff0000;
+    /* Chromatic Inside Glow on Hover */
+    .buttons a::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff0000);
+      background-size: 400% 400%;
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 0;
+      border-radius: 25px;
+    }
+
+    .buttons a:hover::before {
+      opacity: 1;
+      animation: gradientMove 4s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .buttons a span {
+      position: relative;
+      z-index: 1; /* keep text above glow */
     }
   </style>
 </head>
@@ -112,9 +118,9 @@
   <p>This is where you'll find all my socials.</p>
 
   <div class="buttons">
-    <a href="https://x.com/REALgeometron" target="_blank">Twitter</a>
-    <a href="https://steamcommunity.com/profiles/76561199039894027" target="_blank">Steam</a>
-    <a href="https://github.com/REALgeometron" target="_blank">GitHub</a>
+    <a href="https://x.com/REALgeometron" target="_blank"><span>Twitter</span></a>
+    <a href="https://steamcommunity.com/profiles/76561199039894027" target="_blank"><span>Steam</span></a>
+    <a href="https://github.com/REALgeometron" target="_blank"><span>GitHub</span></a>
   </div>
 </body>
 </html>
